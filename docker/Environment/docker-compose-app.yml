@@ -1,0 +1,116 @@
+version: '3.2'
+services:
+                                                         
+    # ===============================
+    # Discovery Service
+    # ===============================
+    discoveryservice:
+        container_name: discoveryservice
+        hostname: discoveryservice
+        build:
+            context: .
+            dockerfile: DockerFiles/DockerFile-DiscoveryService
+        entrypoint: /opt/bin/start_discovery_service.sh
+        image: discoveryservice_image:latest
+        expose:
+            - 8761
+        networks:
+            - app-network
+        volumes:
+            - type: bind
+              source: /c/opt/logs
+              target: /opt/logs
+        volumes:
+            - type: bind
+              source: /c/opt/settings
+              target: /opt/settings
+
+    # ===============================
+    # Authorization Service
+    # ===============================
+    authservice:
+        container_name: authservice
+        hostname: authservice
+        build:
+            context: .
+            dockerfile: DockerFiles/DockerFile-AuthService
+        entrypoint: /opt/bin/start_auth_service.sh
+        image: authservice_image:latest
+        expose:
+            - 8081
+        networks:
+            - app-network
+        volumes:
+            - type: bind
+              source: /c/opt/logs
+              target: /opt/logs
+        volumes:
+            - type: bind
+              source: /c/opt/settings
+              target: /opt/settings
+        links:
+            - discoveryservice:discoveryservice
+        depends_on:
+            - discoveryservice
+
+    # ===============================
+    # Proxy Service
+    # ===============================
+    proxyservice:
+        container_name: proxyservice
+        hostname: proxyservice
+        entrypoint: /opt/bin/start_proxy_service.sh
+        build:
+            context: .
+            dockerfile: DockerFiles/DockerFile-ProxyService
+        image: proxyservice_image:latest
+        expose:
+            - 8080
+        ports:
+            - 8080:8080
+        networks:
+            - app-network
+        links:
+            - discoveryservice:discoveryservice
+        depends_on:
+            - discoveryservice
+        volumes:
+            - type: bind
+              source: /c/opt/logs
+              target: /opt/logs
+
+    # ===============================
+    # Application Service
+    # ===============================
+    applicationservice:
+        container_name: applicationservice
+        hostname: applicationservice
+        entrypoint: /opt/bin/start_application_service.sh
+        build:
+            context: .
+            dockerfile: DockerFiles/DockerFile-ApplicationService
+        image: applicationservice_image:latest
+        expose:
+            - 9300
+        ports:
+            - 9300:9300
+        networks:
+            - app-network
+        links:
+            - discoveryservice:discoveryservice
+            - proxyservice:proxyservice
+        depends_on:
+            - discoveryservice
+            - proxyservice
+        volumes:
+            - type: bind
+              source: /c/opt/logs
+              target: /opt/logs
+
+networks:
+  app-network:
+    external: true
+
+volumes:
+    config-repo:
+        external: true

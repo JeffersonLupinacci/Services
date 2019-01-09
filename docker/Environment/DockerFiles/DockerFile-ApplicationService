@@ -1,0 +1,20 @@
+FROM microservice_image:latest
+
+LABEL maintainer="jeffersonlupinacci@gmail.com"
+
+WORKDIR .
+
+# ================
+# Configure Project
+# ================
+RUN mkdir -p /opt/lib/target && mkdir -p /opt/logs/ && mkdir -p /opt/settings/
+COPY Properties/application_application.yml /opt/lib/target/application.yml
+COPY Deployment/Application.jks /opt/lib/target/Application.jks
+COPY Deployment/application-service.war /opt/lib/target/service.war
+
+# ================
+# Configure Wait
+# ================
+RUN mkdir -p /opt/bin
+COPY Scripts/start_application_service.sh /opt/bin/start_application_service.sh
+RUN cat /opt/bin/start_application_service.sh | tr -d "\r" >> /opt/bin/start_application_service.sh && chmod 755 /opt/bin/start_application_service.sh

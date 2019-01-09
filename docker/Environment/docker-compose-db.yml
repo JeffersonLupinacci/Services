@@ -1,0 +1,41 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    hostname: db
+    build:
+      context: .
+      dockerfile: DockerFiles/DockerFile-PostgresSQL
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    networks:
+      - app-network
+    environment:
+      POSTGRES_DB: application
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    labels:
+      name: postgres
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8070:8080
+    networks:
+      - app-network
+    labels:
+      name: adminer
+      
+networks:
+  app-network:
+    external: true
+
+volumes:
+  config-repo:
+    external: true

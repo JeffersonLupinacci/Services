@@ -1,0 +1,10 @@
+FROM postgres
+
+LABEL maintainer="jeffersonlupinacci@gmail.com"
+
+WORKDIR .
+
+# ================
+# Copy Scripts SQL
+# ================
+COPY Scripts/init.sql /docker-entrypoint-initdb.d/init.sql

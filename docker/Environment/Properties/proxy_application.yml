@@ -1,0 +1,151 @@
+# Info configuration
+info:
+  app:
+    name: Nome
+    groupId: Grupo
+    artifactId: Artefato
+    description: Descricao
+    version: Versao
+
+# Eureka Client
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+        enabled: true
+
+    serviceUrl:
+      defaultZone: https://discoveryservice:8761/eureka/
+
+  instance:
+    hostname: proxyservice
+    appname: Proxy
+    home-page-url-path: https://${eureka.instance.hostname}:${server.port}/
+    status-page-url-path: https://${eureka.instance.hostname}:${server.port}/actuator/info
+    health-check-url-path: https://${eureka.instance.hostname}:${server.port}/actuator/health
+    secure-port-enabled: true
+    non-secure-port-enabled: false
+    secure-port: ${server.port}
+
+# Server Configuration
+server:
+  port: 8080
+  use-forward-headers: true
+  error:
+    whitelabel:
+      enabled: true
+  ssl:
+    enabled: true
+    client-auth: want
+    key-store: /opt/lib/target/Proxy.jks
+    key-store-password: 123456
+    key-alias: Proxy
+    trust-store: /opt/lib/target/Proxy.jks
+    trust-store-password: 123456
+
+# Logging
+logging:
+  level:
+    ROOT: info
+    com.netflix.discovery: off
+    org.springframework.cloud: off
+    springfox.documentation: off
+    org.springframework.cloud.netflix: off
+  file: /opt/logs/proxy.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  register-shutdown-hook: true
+
+# Proxy Routes
+zuul:
+  routes:
+    discovery:
+      path: /mgmt/**
+      sericeId: DISCOVERY
+      url: https://discoveryservice:8761/
+      sensitiveHeaders:
+    auth:
+      path: /auth/**
+      sericeId: AUTH
+      url: https://authservice:8081/
+      sensitiveHeaders: 
+    scheduler:
+      path:  /api/scheduler/**
+      serviceId: SCHEDULER
+    app:
+      path: /api/app/**
+      serviceId: APPLICATION
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
+
+# Swagger Endpoints
+api:
+  items:
+    -
+      name: application
+      location: /api/app/v2/api-docs
+      swaggerVersion: 2.0
+      authorities:
+      -
+        ROLE_USER
+    -
+      name: scheduler
+      location: /api/scheduler/v2/api-docs
+      swaggerVersion: 2.0
+      authorities:
+      -
+        ROLE_ADMIN
+app:  
+  security:
+    login-url: https://authservice:8081/auth/login
+    jwt:
+      url: /login
+      header: Authorization
+      prefix: Bearer
+      expiration: 86400
+      secret: secret
+
+# Spring
+spring:
+  profiles:
+    active: native
+  application:
+    name: proxy
+  cloud:
+    config:
+      enabled: false
+      uri: https://discoveryservice:8761/config/
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+  jackson:
+    serialization:
+      write-date-timestamps-as-nanoseconds: false
+
+# Ribbon
+ribbon:
+  eureka:
+    enabled: true
+
+# Management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics, health, env, info, features, beans, logfile
+  endpoint:
+    beans:
+      enabled: true
+    env:
+      enabled: true
+    health:
+      enabled: true
+    features:
+      enabled: true
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    logfile:
+      enabled: true

@@ -1,0 +1,20 @@
+FROM microservice_image:latest
+
+LABEL maintainer="jeffersonlupinacci@gmail.com"
+
+WORKDIR .
+
+# ================
+# Configure Project
+# ================
+RUN mkdir -p /opt/lib/target && mkdir -p /opt/logs/ && mkdir -p /opt/settings/
+COPY Properties/proxy_application.yml /opt/lib/target/application.yml
+COPY Deployment/Proxy.jks /opt/lib/target/Proxy.jks
+COPY Deployment/proxy-service.war /opt/lib/target/service.war
+
+# ================
+# Configure Wait
+# ================
+RUN mkdir -p /opt/bin
+COPY Scripts/start_proxy_service.sh /opt/bin/start_proxy_service.sh
+RUN cat /opt/bin/start_proxy_service.sh | tr -d "\r" >> /opt/bin/start_proxy_service.sh && chmod 755 /opt/bin/start_proxy_service.sh

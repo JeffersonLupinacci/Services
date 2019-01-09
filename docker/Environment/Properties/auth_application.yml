@@ -1,0 +1,116 @@
+# Info configuration
+info:
+  app:
+    name: Auth
+    groupId: Auth
+    artifactId: Auth
+    description: Auth
+    version: Auth
+
+# Eureka Client
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+        enabled: true
+
+    serviceUrl:
+      defaultZone: https://discoveryservice:8761/eureka/
+
+  instance:
+    hostname: authservice
+    appname: Auth
+    home-page-url-path: https://${eureka.instance.hostname}:${server.port}/
+    status-page-url-path: https://${eureka.instance.hostname}:${server.port}/actuator/info
+    health-check-url-path: https://${eureka.instance.hostname}:${server.port}/actuator/health
+    secure-port-enabled: true
+    non-secure-port-enabled: false
+    secure-port: ${server.port}
+
+# Server Configuration
+server:
+  port: 8081
+  use-forward-headers: true
+  error:
+    whitelabel:
+      enabled: true
+  ssl:
+    enabled: true
+    client-auth: want
+    key-store: /opt/lib/target/Auth.jks
+    key-store-password: 123456
+    key-alias: Auth
+    trust-store: /opt/lib/target/Auth.jks
+    trust-store-password: 123456
+
+# Logging
+logging:
+  level:
+    ROOT: info
+    org.springframework.cloud: off
+    org.springframework.boot.actuate: off
+    com.netflix.config: off
+    com.netflix.discovery: off
+  file: /opt/logs/auth.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  register-shutdown-hook: true
+
+app:
+  security:
+    jwt:
+      url: /login
+      header: Authorization
+      prefix: Bearer
+      expiration: 86400
+      secret: secret
+
+# Spring
+spring:
+  profiles:
+    active: native
+  application:
+    name: auth
+  cloud:
+    config:
+      enabled: false
+      uri: https://discoveryservice:8761/config/
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+  jackson:
+    serialization:
+      write-date-timestamps-as-nanoseconds: false
+
+# Ribbon
+ribbon:
+  eureka:
+    enabled: true
+
+# Management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics, health, env, info, features, beans, logfile
+  endpoint:
+    beans:
+      enabled: true
+    env:
+      enabled: true
+    health:
+      enabled: true
+    features:
+      enabled: true
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    logfile:
+      enabled: true
+
+
+
+

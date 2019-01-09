@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  <!-- Communication -->
+  <bean class="com.jeffersonlupinacci.app.core.facade.impl.communication.rabbitMQ.RabbitMQMessageServiceImpl" name="rabbitMQMessageService"/>
+  <bean class="com.jeffersonlupinacci.app.core.facade.impl.communication.rabbitMQManagement.RabbitMQManagementServiceImpl" name="rabbitMQManagementService"/>
+  <bean class="com.jeffersonlupinacci.app.core.facade.impl.communication.mail.MailServiceImpl" name="mailService"/>
+
+  <!-- Appliction Services -->
+  <bean class="com.jeffersonlupinacci.app.core.facade.impl.person.PersonServiceImpl" name="personService"/>
+
+</beans>

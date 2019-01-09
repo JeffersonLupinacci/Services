@@ -1,0 +1,60 @@
+# Info configuration
+info:
+  app:
+    name: Nome
+    groupId: Grupo
+    artifactId: Artefato
+    description: Descricao
+    version: Versao
+
+# Spring
+spring:
+  # use composition
+  # DEFAULT
+  # swagger, eureka, activeMQ, rabbitMQ
+  profiles:
+    active: swagger, eureka, security
+  application:
+    name: scheduler
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+
+  # Spring cloud configuration
+  cloud:
+    config:
+      uri: https://localhost:8761/config
+
+  # Jackson
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS: true
+      write_dates_as_timestamps: false
+
+  # JPA
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database: mysql
+
+
+# Application Data Source
+#app:
+#  datasource:
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    jdbcUrl: jdbc:mysql://localhost:3306/application?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#    username: root
+#    password: root
+
+# Logging
+logging:
+    level:
+       com.jeffersonlupinacci.app.applicationService: warn
+       com.netflix.discovery: off
+    file: /opt/logs/scheduler.log
+    pattern:
+        console: "%d %-5level %logger : %msg%n"
+        file: "%d %-5level [%thread] %logger : %msg%n"
+    register-shutdown-hook: true

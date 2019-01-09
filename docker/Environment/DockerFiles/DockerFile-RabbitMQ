@@ -1,0 +1,9 @@
+FROM rabbitmq:3-management
+
+LABEL maintainer="jeffersonlupinacci@gmail.com"
+
+WORKDIR .
+
+# ==========================
+# Copy Configuration Files
+# ==========================

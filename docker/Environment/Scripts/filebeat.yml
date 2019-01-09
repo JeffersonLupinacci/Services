@@ -1,0 +1,20 @@
+filebeat.inputs:
+- type: log
+  enabled: false
+  paths:
+    - /opt/log/*.log
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+setup.template.settings:
+  index.number_of_shards: 3
+
+setup.kibana:
+  host: "elk:5601"
+
+output.elasticsearch:
+  hosts: ["elk:9200"]
+
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~

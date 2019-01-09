@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+
+   # ===============================
+   # Elasticsearch, Logstash, Kibana (ELK) 
+   # ===============================
+  elk:
+    image: sebp/elk
+    hostname: elk
+    entrypoint: /usr/local/bin/start.sh
+    ports:
+      - 5000:5000
+      - 5601:5601
+      - 5044:5044
+      - 5001:5001
+      - 9200:9200
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
+
+volumes:
+  config-repo:
+    external: true
+

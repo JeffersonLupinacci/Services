@@ -1,0 +1,23 @@
+# Quartz
+org:
+  quartz:
+    scheduler:
+      instanceId: AUTO
+      skipUpdateCheck: true
+      jobFactory.class: org.quartz.simpl.SimpleJobFactory
+
+    # MultiThread
+    threadPool:
+      class: org.quartz.simpl.SimpleThreadPool
+      threadCount: 2
+
+    # Job Store
+    jobStore:
+      class: org.quartz.impl.jdbcjobstore.JobStoreTX
+      driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+      dataSource: quartzDataSource
+      tablePrefix: QRTZ_
+
+      #Load Balance
+      isClustered: true
+      clusterCheckinInterval: 15000

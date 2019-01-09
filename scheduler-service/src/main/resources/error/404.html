@@ -1,0 +1,1121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application</title>
+  <style>
+
+    body {
+      background: #F9F9F9;
+    }
+
+    .container {
+      width: 800px;
+      height: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .four-box-left {
+      position: absolute;
+      top: 180px;
+      left: 57px;
+      width: 236px;
+      height: 248px;
+    }
+
+    .four-box-right {
+      position: absolute;
+      top: 180px;
+      left: 497px;
+      width: 236px;
+      height: 248px;
+    }
+
+    .col-1 {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 89px;
+      height: 183px;
+      background: #ffc928;
+    }
+
+    .col-1 .shadow {
+      position: absolute;
+      top: 0px;
+      left: 15px;
+      width: 30px;
+      height: 100%;
+      background: #ffb200;
+    }
+
+    .col-1 .inner-box {
+      position: absolute;
+      top: -5px;
+      left: 9px;
+      width: 84px;
+      height: 193px;
+    }
+
+    .col-1 .inner-box .border-style-h {
+      border-radius: 4px;
+      background: black;
+      height: 10px;
+      width: 100%;
+    }
+
+    .col-1 .inner-box .border-1 {
+      border-radius: 4px;
+      background: black;
+      height: 60px;
+      width: 10px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    .col-1 .inner-box .border-2 {
+      border-radius: 4px;
+      background: black;
+      height: 21px;
+      width: 10px;
+      position: absolute;
+      top: 65px;
+      left: 0px;
+    }
+
+    .col-1 .inner-box .border-3 {
+      border-radius: 4px;
+      background: black;
+      height: 101px;
+      width: 10px;
+      position: absolute;
+      top: 92px;
+      left: 0px;
+    }
+
+    .col-1 .inner-box .border-4 {
+      border-radius: 4px;
+      background: black;
+      height: 193px;
+      width: 10px;
+      position: absolute;
+      top: 0px;
+      left: 75px;
+    }
+
+    .col-1 .inner-box .border-1-1 {
+      border-radius: 4px;
+      background: black;
+      height: 193px;
+      width: 10px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    .col-1 .inner-box .border-2-2 {
+      border-radius: 4px;
+      background: black;
+      height: 69px;
+      width: 10px;
+      position: absolute;
+      top: 0px;
+      left: 75px;
+    }
+
+    .col-1 .inner-box .border-3-3 {
+      border-radius: 4px;
+      background: black;
+      height: 39px;
+      width: 10px;
+      position: absolute;
+      top: 80px;
+      left: 75px;
+    }
+
+    .col-1 .inner-box .border-4-4 {
+      border-radius: 4px;
+      background: black;
+      height: 10px;
+      width: 68px;
+      position: absolute;
+      top: 183px;
+      left: 0px;
+    }
+
+    .col-1 .inner-box .top-border {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    .col-1 .inner-box .bottom-border {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+    }
+
+    .col-2 {
+      position: absolute;
+      top: 104px;
+      left: 84px;
+      width: 64px;
+      height: 79px;
+      background: #ffc928;
+      border-radius: 4px;
+    }
+
+    .col-2 .border-1 {
+      border-radius: 4px;
+      background: black;
+      height: 10px;
+      width: 100%;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      border-top-left-radius: 0px;
+      z-index: 11;
+    }
+
+    .col-2 .border-2 {
+      border-radius: 4px;
+      background: black;
+      height: 10px;
+      width: 100%;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      position: absolute;
+      top: 74px;
+      left: 0px;
+      z-index: 11;
+    }
+
+    .col-2 .border-1-1 {
+      border-radius: 4px;
+      background: black;
+      height: 10px;
+      width: 100%;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      border-top-left-radius: 0px;
+      z-index: 11;
+    }
+
+    .col-2 .border-2-2 {
+      border-radius: 4px;
+      background: black;
+      height: 10px;
+      width: 23px;
+      position: absolute;
+      top: 74px;
+      left: 0px;
+    }
+
+    .col-2 .border-3-3 {
+      border-radius: 4px;
+      background: black;
+      height: 10px;
+      width: 35px;
+      position: absolute;
+      top: 74px;
+      left: 29px;
+      z-index: 11;
+    }
+
+    .col-3 {
+      position: absolute;
+      top: 55px;
+      left: 128px;
+      width: 80px;
+      height: 183px;
+      background: #ffc928;
+      z-index: 10;
+    }
+
+    .col-3 .inner-box {
+      position: absolute;
+      top: -5px;
+      left: 10px;
+      width: 84px;
+      height: 193px;
+    }
+
+    .col-3 .inner-box .border-1 {
+      border-radius: 4px;
+      background: black;
+      height: 10px;
+      width: 50px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    .col-3 .inner-box .border-2 {
+      border-radius: 4px;
+      background: black;
+      height: 10px;
+      width: 23px;
+      position: absolute;
+      top: 0px;
+      left: 61px;
+    }
+
+    .col-3 .inner-box .border-3 {
+      border-radius: 4px;
+      background: black;
+      height: 64px;
+      width: 10px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    .col-3 .inner-box .border-4 {
+      border-radius: 4px;
+      background: black;
+      height: 65px;
+      width: 10px;
+      position: absolute;
+      top: 128px;
+      left: 0px;
+    }
+
+    .col-3 .inner-box .border-5 {
+      border-radius: 4px;
+      background: black;
+      height: 193px;
+      width: 10px;
+      position: absolute;
+      top: 0px;
+      left: 74px;
+    }
+
+    .col-3 .inner-box .border-6 {
+      border-radius: 4px;
+      background: black;
+      height: 10px;
+      width: 80px;
+      position: absolute;
+      top: 183px;
+      left: 0px;
+    }
+
+    .col-3 .inner-box .border-1-1 {
+      border-radius: 4px;
+      background: black;
+      height: 64px;
+      width: 10px;
+      position: absolute;
+      top: 0px;
+      left: 75px;
+    }
+
+    .col-3 .inner-box .border-2-2 {
+      border-radius: 4px;
+      background: black;
+      height: 10px;
+      width: 23px;
+      position: absolute;
+      top: 54px;
+      left: 75px;
+    }
+
+    .col-3 .inner-box .border-3-3 {
+      border-radius: 4px;
+      background: black;
+      height: 84px;
+      width: 10px;
+      position: absolute;
+      top: 54px;
+      left: 88px;
+    }
+
+    .col-3 .inner-box .border-4-4 {
+      border-radius: 4px;
+      background: black;
+      height: 10px;
+      width: 23px;
+      position: absolute;
+      top: 128px;
+      left: 75px;
+    }
+
+    .col-3 .inner-box .border-5-5 {
+      border-radius: 4px;
+      background: black;
+      height: 65px;
+      width: 10px;
+      position: absolute;
+      top: 128px;
+      left: 75px;
+      border-bottom-left-radius: 0px;
+    }
+
+    .col-3 .center-box {
+      width: 13px;
+      height: 74px;
+      position: absolute;
+      top: 54px;
+      left: 80px;
+      background: #ffc928;
+    }
+
+    .pacman-container {
+      width: 256px;
+      height: 280px;
+      position: absolute;
+      top: 158px;
+      left: 260px;
+      z-index: 22;
+      -webkit-animation: GhostMoving 1.5s linear infinite;
+    }
+
+    .pacman-container .pacman-body {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 252px;
+      height: 280px;
+      background: #336699;
+      border-top-left-radius: 126px;
+      border-top-right-radius: 126px;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    .pacman-container .pacman-body .shadow {
+      position: absolute;
+      top: 0px;
+      left: 5px;
+      height: 280px;
+      width: 235px;
+      border: 30px solid #233e61;
+      position: absolute;
+      top: -5px;
+      left: 10px;
+      border-top: 0px;
+      border-right: 0px;
+      border-bottom: 0px;
+      border-radius: 50% 0px 0px 0px;
+      z-index: 10;
+    }
+
+    .pacman-container .pacman-body .tail {
+      width: 100%;
+      height: 40px;
+      left: 0px;
+      position: absolute;
+      bottom: 0px;
+      overflow: hidden;
+      z-index: 11;
+    }
+
+    .pacman-container .pacman-body .tail .first-tail {
+      width: 58px;
+      height: 69px;
+      position: absolute;
+      top: 12px;
+      left: 10px;
+      border-radius: 5px;
+      -moz-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    .pacman-container .pacman-body .tail .second-tail {
+      width: 58px;
+      height: 69px;
+      position: absolute;
+      position: absolute;
+      top: 12px;
+      left: 94px;
+      border-radius: 5px;
+      -moz-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    .pacman-container .pacman-body .tail .third-tail {
+      width: 58px;
+      height: 69px;
+      position: absolute;
+      top: 12px;
+      left: 180px;
+      border-radius: 5px;
+      -moz-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    .pacman-container .eyes {
+      width: 169px;
+      height: 67px;
+      position: absolute;
+      top: 82px;
+      left: 64px;
+    }
+
+    .pacman-container .eyes .eye-style {
+      width: 68px;
+      height: 67px;
+      border-radius: 50%;
+      background: white;
+    }
+
+    .pacman-container .eyes .eye-style .inside {
+      width: 25px;
+      height: 25px;
+      background: black;
+      position: absolute;
+      top: 21px;
+      left: 28px;
+      border-radius: 50%;
+    }
+
+    .pacman-container .eyes .left {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    .pacman-container .eyes .right {
+      position: absolute;
+      top: 0px;
+      left: 101px;
+    }
+
+    .pacman-container .inner-box {
+      z-index: 11;
+      width: 256px;
+      height: 280px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    .pacman-container .inner-box .tail {
+      width: 105%;
+      height: 40px;
+      left: 0px;
+      position: absolute;
+      bottom: 0px;
+      overflow: hidden;
+    }
+
+    .pacman-container .inner-box .tail .first-tail {
+      width: 58px;
+      height: 69px;
+      position: absolute;
+      top: 12px;
+      left: 10px;
+      border-radius: 10px;
+      -moz-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      border: 10px solid black;
+    }
+
+    .pacman-container .inner-box .tail .second-tail {
+      width: 58px;
+      height: 69px;
+      position: absolute;
+      position: absolute;
+      top: 12px;
+      left: 94px;
+      border-radius: 10px;
+      -moz-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      border: 10px solid black;
+    }
+
+    .pacman-container .inner-box .tail .third-tail {
+      width: 58px;
+      height: 69px;
+      background: white;
+      position: absolute;
+      position: absolute;
+      top: 12px;
+      left: 180px;
+      border-radius: 10px;
+      -moz-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      border: 10px solid black;
+    }
+
+    .pacman-container .inner-box .border-1 {
+      height: 280px;
+      width: 235px;
+      border: 10px solid black;
+      position: absolute;
+      top: -8px;
+      left: 10px;
+      border-bottom: 0px;
+      border-radius: 50% 50% 0px 0px;
+      background: transparent;
+    }
+
+    .pacman-container .inner-box .border-1 .corner-1 {
+      width: 7px;
+      height: 0px;
+      background: black;
+      position: absolute;
+      bottom: -1px;
+      left: -10px;
+      border-top: 0px;
+      border-right: 0px;
+      border: 10px solid black;
+      border-bottom-right-radius: 10px;
+      border-left: 0px;
+      border-bottom: 0px;
+    }
+
+    .pacman-container .inner-box .border-1 .corner-2 {
+      width: 22px;
+      height: 0px;
+      background: black;
+      position: absolute;
+      bottom: -1px;
+      left: 59px;
+      border-top: 0px;
+      border-right: 0px;
+      border: 10px solid black;
+      border-bottom-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+      border-left: 0px;
+      border-bottom: 0px;
+    }
+
+    .pacman-container .inner-box .border-1 .corner-3 {
+      width: 24px;
+      height: 0px;
+      background: black;
+      position: absolute;
+      bottom: -1px;
+      left: 143px;
+      border-top: 0px;
+      border-right: 0px;
+      border: 10px solid black;
+      border-bottom-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+      border-left: 0px;
+      border-bottom: 0px;
+    }
+
+    .pacman-container .inner-box .border-1 .corner-4 {
+      width: 6px;
+      height: 0px;
+      background: black;
+      position: absolute;
+      bottom: -1px;
+      left: 229px;
+      border-top: 0px;
+      border-right: 0px;
+      border: 10px solid black;
+      border-bottom-left-radius: 10px;
+      border-left: 0px;
+      border-bottom: 0px;
+    }
+
+    .pulse-container {
+      width: 36px;
+      height: 33px;
+      position: relative;
+    }
+
+    .pulse-container.left {
+      position: absolute;
+      top: 160px;
+      left: 269px;
+    }
+
+    .pulse-container.left .tiny {
+      -webkit-animation: pulse-move-1 200ms linear infinite;
+    }
+
+    .pulse-container.left .small {
+      -webkit-animation: pulse-move-3 300ms linear infinite;
+    }
+
+    .pulse-container.left .large {
+      -webkit-animation: pulse-move-2 300ms linear infinite;
+    }
+
+    .pulse-container.left .pulse-1 {
+      position: absolute;
+      top: 0px;
+      left: 10px;
+    }
+
+    .pulse-container.left .pulse-2 {
+      position: absolute;
+      top: 5px;
+      left: 23px;
+    }
+
+    .pulse-container.left .pulse-3 {
+      position: absolute;
+      top: 14px;
+      left: 0px;
+    }
+
+    .pulse-container.right {
+      position: absolute;
+      top: 401px;
+      left: 534px;
+    }
+
+    .pulse-container.right .tiny {
+      -webkit-animation: pulse-move-1 400ms linear infinite;
+    }
+
+    .pulse-container.right .small {
+      -webkit-animation: pulse-move-3 300ms linear infinite;
+    }
+
+    .pulse-container.right .large {
+      -webkit-animation: pulse-move-2 500ms linear infinite;
+    }
+
+    .pulse-container.right .pulse-1 {
+      position: absolute;
+      top: 24px;
+      left: 17px;
+    }
+
+    .pulse-container.right .pulse-2 {
+      position: absolute;
+      top: 15px;
+      left: 0px;
+    }
+
+    .pulse-container.right .pulse-3 {
+      position: absolute;
+      top: 0px;
+      left: 11px;
+    }
+
+    .pulse-container .tiny {
+      width: 9px;
+      height: 9px;
+      position: relative;
+    }
+
+    .pulse-container .tiny .line-1 {
+      width: 3px;
+      height: 100%;
+      display: block;
+      position: relative;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+      background: #42a5f6;
+      border-radius: 5px;
+    }
+
+    .pulse-container .tiny .line-2 {
+      width: 100%;
+      height: 3px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      margin-top: -1.5px;
+      left: 0px;
+      background: #42a5f6;
+      border-radius: 5px;
+    }
+
+    .pulse-container .tiny .circle {
+      background: #42a5f6;
+      width: 6px;
+      height: 6px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      margin-top: -3px;
+      margin-left: -3px;
+      left: 50%;
+      border-radius: 50%;
+    }
+
+    .pulse-container .small {
+      width: 13px;
+      height: 13px;
+      position: relative;
+    }
+
+    .pulse-container .small .line-1 {
+      width: 4px;
+      height: 100%;
+      display: block;
+      position: relative;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+      background: #42a5f6;
+      border-radius: 5px;
+    }
+
+    .pulse-container .small .line-2 {
+      width: 100%;
+      height: 4px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      margin-top: -2px;
+      left: 0px;
+      background: #42a5f6;
+      border-radius: 5px;
+    }
+
+    .pulse-container .small .circle {
+      background: #42a5f6;
+      width: 7px;
+      height: 7px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      margin-top: -3.5px;
+      margin-left: -3.5px;
+      left: 50%;
+      border-radius: 50%;
+    }
+
+    .pulse-container .large {
+      width: 19px;
+      height: 19px;
+      position: relative;
+    }
+
+    .pulse-container .large .line-1 {
+      width: 5px;
+      height: 100%;
+      display: block;
+      position: relative;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+      background: #42a5f6;
+      border-radius: 5px;
+    }
+
+    .pulse-container .large .line-2 {
+      width: 100%;
+      height: 5px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      margin-top: -2.5px;
+      left: 0px;
+      background: #42a5f6;
+      border-radius: 5px;
+    }
+
+    .pulse-container .large .circle {
+      background: #42a5f6;
+      width: 13px;
+      height: 10px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      margin-top: -5px;
+      margin-left: -6.5px;
+      left: 50%;
+      border-radius: 50%;
+    }
+
+    .copyright {
+      font-family: 'Ubuntu', sans-serif;
+      text-align: center;
+    }
+
+    @-webkit-keyframes messageFadeIn {
+      0% {
+        opacity: 0;
+        -moz-transform: translate(-80px, 0px);
+        -o-transform: translate(-80px, 0px);
+        -ms-transform: translate(-80px, 0px);
+        -webkit-transform: translate(-80px, 0px);
+        transform: translate(-80px, 0px);
+      }
+      100% {
+        opacity: 1;
+        -moz-transform: translate(0px, 0px);
+        -o-transform: translate(0px, 0px);
+        -ms-transform: translate(0px, 0px);
+        -webkit-transform: translate(0px, 0px);
+        transform: translate(0px, 0px);
+      }
+    }
+
+    @-webkit-keyframes GhostMoving {
+      0% {
+        top: 158px;
+      }
+      50% {
+        top: 148px;
+      }
+      100% {
+        top: 158px;
+      }
+    }
+
+    @-webkit-keyframes pulse-move-1 {
+      0% {
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      90% {
+        -moz-transform: scale(1.6);
+        -o-transform: scale(1.6);
+        -ms-transform: scale(1.6);
+        -webkit-transform: scale(1.6);
+        transform: scale(1.6);
+      }
+      100% {
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+
+    @-webkit-keyframes pulse-move-2 {
+      0% {
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      90% {
+        -moz-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+      }
+      100% {
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+
+    @-webkit-keyframes pulse-move-3 {
+      0% {
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      90% {
+        -moz-transform: scale(1.8);
+        -o-transform: scale(1.8);
+        -ms-transform: scale(1.8);
+        -webkit-transform: scale(1.8);
+        transform: scale(1.8);
+      }
+      100% {
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="four-box-left">
+    <div class="col-1">
+      <div class="shadow"></div>
+      <div class="inner-box">
+        <div class="border-style-h top-border"></div>
+        <div class="border-style-h bottom-border"></div>
+        <div class="border-1"></div>
+        <div class="border-2"></div>
+        <div class="border-3"></div>
+        <div class="border-4"></div>
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="border-1"></div>
+      <div class="border-2"></div>
+    </div>
+    <div class="col-3">
+      <div class="inner-box">
+        <div class="border-1"></div>
+        <div class="border-2"></div>
+        <div class="border-3"></div>
+        <div class="border-4"></div>
+        <div class="border-5"></div>
+        <div class="border-6"></div>
+      </div>
+    </div>
+  </div>
+  <div class="four-box-right">
+    <div class="col-1">
+      <div class="shadow"></div>
+      <div class="inner-box">
+        <div class="border-style-h top-border"></div>
+        <div class="border-1-1"></div>
+        <div class="border-2-2"></div>
+        <div class="border-3-3"></div>
+        <div class="border-4-4"></div>
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="border-1-1"></div>
+      <div class="border-2-2"></div>
+      <div class="border-3-3"></div>
+    </div>
+    <div class="col-3">
+      <div class="center-box"></div>
+      <div class="inner-box">
+        <div class="border-1"></div>
+        <div class="border-2"></div>
+        <div class="border-3"></div>
+        <div class="border-4"></div>
+        <div class="border-6"></div>
+        <div class="border-1-1"></div>
+        <div class="border-2-2"></div>
+        <div class="border-3-3"></div>
+        <div class="border-4-4"></div>
+        <div class="border-5-5"></div>
+      </div>
+    </div>
+  </div>
+  <div class="pacman-container">
+    <div class="white-bg"></div>
+    <div class="pacman-body">
+      <div class="shadow"></div>
+      <div class="eyes">
+        <div class="eye-style left">
+          <div class="inside"></div>
+        </div>
+        <div class="eye-style right">
+          <div class="inside"></div>
+        </div>
+      </div>
+      <div class="tail">
+        <div class="first-tail"></div>
+        <div class="second-tail"></div>
+        <div class="third-tail"></div>
+      </div>
+    </div>
+    <div class="inner-box">
+      <div class="tail">
+        <div class="first-tail"></div>
+        <div class="second-tail"></div>
+        <div class="third-tail"></div>
+      </div>
+      <div class="border-1">
+        <div class="corner-1"></div>
+        <div class="corner-2"></div>
+        <div class="corner-3"></div>
+        <div class="corner-4"></div>
+      </div>
+    </div>
+  </div>
+  <div class="dash-line">
+    <div class="line-1"></div>
+    <div class="line-2"></div>
+    <div class="line-3"></div>
+  </div>
+  <div class="message">
+    <span class="o-letter o-1"></span>
+    <span class="o-letter o-2"></span>
+    <span class="o-letter o-3"></span>
+    <span class="o-letter o-4"></span>
+    <span class="o-letter o-5"></span>
+    <span class="p-letter">
+          <span class="top"></span>
+      </span>
+    <span class="s-letter">
+          <span class="border-1"></span>
+      <span class="border-2"></span>
+      <span class="border-3"></span>
+      <span class="border-mid"></span>
+      <span class="border-4"></span>
+      <span class="border-5"></span>
+      <span class="border-6"></span>
+      </span>
+    <span class="mark mark-1">
+          <span class="line"></span>
+      <span class="dot"></span>
+      </span>
+    <span class="mark">
+          <span class="line"></span>
+      <span class="dot"></span>
+      </span>
+  </div>
+  <div class="pulse-container left">
+    <div class="pulse-1 tiny">
+      <div class="line-1"></div>
+      <div class="line-2"></div>
+      <div class="circle"></div>
+    </div>
+    <div class="pulse-2 small">
+      <div class="line-1"></div>
+      <div class="line-2"></div>
+      <div class="circle"></div>
+    </div>
+    <div class="pulse-3 large">
+      <div class="line-1"></div>
+      <div class="line-2"></div>
+      <div class="circle"></div>
+    </div>
+  </div>
+  <div class="pulse-container right">
+    <div class="pulse-1 tiny">
+      <div class="line-1"></div>
+      <div class="line-2"></div>
+      <div class="circle"></div>
+    </div>
+    <div class="pulse-2 small">
+      <div class="line-1"></div>
+      <div class="line-2"></div>
+      <div class="circle"></div>
+    </div>
+    <div class="pulse-3 large">
+      <div class="line-1"></div>
+      <div class="line-2"></div>
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

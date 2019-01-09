@@ -1,0 +1,77 @@
+
+# Spring Configuration
+spring:
+  application:
+    name: scheduler
+  # Spring cloud configuration
+  cloud:
+    config:
+      uri: https://localhost:8761/config
+
+# Eureka Client
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+        enabled: true
+
+    serviceUrl:
+      defaultZone: https://localhost:8761/eureka/
+
+  instance:
+    hostname: localhost
+    appname: Scheduler
+    home-page-url-path: https://${eureka.instance.hostname}:${server.port}/
+    status-page-url-path: https://${eureka.instance.hostname}:${server.port}/actuator/info
+    health-check-url-path: https://${eureka.instance.hostname}:${server.port}/actuator/health
+    secure-port-enabled: true
+    non-secure-port-enabled: false
+    secure-port: ${server.port}
+
+# Ribbon Load Balance
+ribbon:
+  eureka:
+    enabled: true
+
+# Server Configuration
+server:
+  port: 9200
+  use-forward-headers: true
+  error:
+    whitelabel:
+      enabled: true
+  ssl:
+    enabled: true
+    client-auth: want
+    key-store: classpath:Scheduler.jks
+    key-store-password: 123456
+    key-alias: Scheduler
+    trust-store: classpath:Scheduler.jks
+    trust-store-password: 123456
+
+# Management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics, env, info, features, beans, logfile, httptrace, threaddump, health
+  endpoint:
+    beans:
+      enabled: true
+    env:
+      enabled: true
+    health:
+      enabled: true
+    features:
+      enabled: true
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    logfile:
+      enabled: true
+    httptrace:
+      enabled: true
+    threaddump:
+      enabled: true

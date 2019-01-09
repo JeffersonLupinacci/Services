@@ -1,0 +1,138 @@
+# Info configuration
+info:
+  app:
+    name: App Integration
+    groupId: com.jeffersonlupinacci.app
+    artifactId: application-service
+    description: Welcome to the integration platform
+    version: 0.0.1
+
+# Eureka Client
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+        enabled: true
+
+    serviceUrl:
+      defaultZone: https://discoveryservice:8761/eureka/
+
+  instance:
+    hostname: applicationservice
+    appname: Application
+    home-page-url-path: https://${eureka.instance.hostname}:${server.port}/
+    status-page-url-path: https://${eureka.instance.hostname}:${server.port}/actuator/info
+    health-check-url-path: https://${eureka.instance.hostname}:${server.port}/actuator/health
+    secure-port-enabled: true
+    non-secure-port-enabled: false
+    secure-port: ${server.port}
+
+# Server Configuration
+server:
+  port: 9300
+  use-forward-headers: true
+  error:
+    whitelabel:
+      enabled: true
+  ssl:
+    enabled: true
+    client-auth: want
+    key-store: /opt/lib/target/Application.jks
+    key-store-password: 123456
+    key-alias: Application
+    trust-store: /opt/lib/target/Application.jks
+    trust-store-password: 123456
+
+# Logging
+logging:
+    level:
+       ROOT: warn
+    file: /opt/logs/application.log
+    pattern:
+        console: "%d %-5level %logger : %msg%n"
+        file: "%d %-5level [%thread] %logger : %msg%n"
+    register-shutdown-hook: true
+
+# Spring
+spring:
+  # use composition
+  # DEFAULT
+  # swagger, eureka, activeMQ, rabbitMQ
+  profiles:
+    active: swagger, eureka
+  application:
+    name: application
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+
+  # Spring cloud configuration
+  cloud:
+    config:
+      uri: https://discoveryservice:8761/config
+      enabled: false
+
+  # Jackson
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS: true
+      write_dates_as_timestamps: false
+
+  # JPA
+  jpa:
+    hibernate:
+      show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+
+# Application Data Source
+app:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    jdbc-url: jdbc:postgresql://db:5432/application
+    username: root
+    password: root
+  security:
+    jwt:
+      url: /login
+      header: Authorization
+      prefix: Bearer
+      expiration: 86400
+      secret: secret
+
+# Ribbon Load Balance
+ribbon:
+  eureka:
+    enabled: true
+
+# Management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics, health, env, info, features, beans, logfile, httptrace, threaddump
+  endpoint:
+    beans:
+      enabled: true
+    env:
+      enabled: true
+    health:
+      enabled: true
+    features:
+      enabled: true
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    logfile:
+      enabled: true
+    httptrace:
+      enabled: true
+    threaddump:
+      enabled: true

@@ -1,0 +1,19 @@
+FROM microservice_image:latest
+
+LABEL maintainer="jeffersonlupinacci@gmail.com"
+
+WORKDIR .
+
+# ================
+# Configure Project
+# ================
+COPY Properties/discovery_application.yml /opt/lib/target/application.yml
+COPY Deployment/Discovery.jks /opt/lib/target/Discovery.jks
+COPY Deployment/discovery-service.war /opt/lib/target/service.war
+
+# ================
+# Configure Wait
+# ================
+RUN mkdir -p /opt/bin
+COPY Scripts/start_discovery_service.sh /opt/bin/start_discovery_service.sh
+RUN cat /opt/bin/start_discovery_service.sh | tr -d "\r" >> /opt/bin/start_discovery_service.sh && chmod 755 /opt/bin/start_discovery_service.sh

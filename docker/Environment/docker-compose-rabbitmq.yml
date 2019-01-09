@@ -1,0 +1,34 @@
+version: '3.1'
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    hostname: rabbitmq
+    build:
+      context: .
+      dockerfile: DockerFiles/DockerFile-RabbitMQ
+    expose:
+      - 5672
+      - 15672
+    ports:
+      - 15672:15672
+      - 5672:5672
+    networks:
+      - app-network
+    environment:
+      RABBITMQ_ERLANG_COOKIE: QAZWSXEDCFRVTGB
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rabbitmq
+      RABBITMQ_DEFAULT_VHOST: /
+    labels:
+      name: rabbitmq
+      
+networks:
+  app-network:
+    external: true
+
+volumes:
+  config-repo:
+    external: true

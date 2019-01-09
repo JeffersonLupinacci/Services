@@ -1,0 +1,119 @@
+# Info configuration
+info:
+  app:
+    name: Discovery
+    groupId: Group
+    artifactId: Artifact
+    description: Description
+    version: Version
+
+# Eureka
+eureka:
+
+  instance:
+    hostname: discoveryservice
+    appname: Discovery
+    home-page-url: https://${eureka.instance.hostname}:${server.port}/
+    home-page-url-path: https://${eureka.instance.hostname}:${server.port}/
+    status-page-url-path: https://${eureka.instance.hostname}:${server.port}/actuator/info
+    health-check-url-path: https://${eureka.instance.hostname}:${server.port}/actuator/health
+    secure-port-enabled: true
+    non-secure-port-enabled: false
+    secure-port: ${server.port}
+
+  server:
+    enable-self-preservation: true
+
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: https://${eureka.instance.hostname}:${server.port}/eureka/
+
+  dashboard:
+    enabled: true
+    path: /eureka-ui
+
+# Server Configuration
+server:
+  port: 8761
+  servlet:
+    context-path: /
+  error:
+    whitelabel:
+      enabled: true
+  ssl:
+    enabled: true
+    client-auth: want
+    key-store: /opt/lib/target/Discovery.jks
+    key-store-password: 123456
+    key-alias: Discovery
+    trust-store: /opt/lib/target/Discovery.jks
+    trust-store-password: 123456
+
+# Logging
+logging:
+    level:
+       ROOT: info
+       com.netflix: off
+       org.springframework.cloud: off
+       org.springframework.boot.actuate: off
+    file: /opt/logs/discovery.log
+    pattern:
+        console: "%d %-5level %logger : %msg%n"
+        file: "%d %-5level [%thread] %logger : %msg%n"
+    register-shutdown-hook: true
+
+spring:
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+  application:
+    name: discovery
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: /opt/settings/
+        prefix: /config
+      discovery:
+        enabled: true
+
+  boot:
+    admin:
+      context-path: /sba/
+      #ui:
+      #  public-url: https://localhost:8080/mgmt/sba/
+
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+
+  security:
+    user:
+      name: admin
+      password: admin-password
+
+# Management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics, health, env, info, features, beans, logfile
+  endpoint:
+    beans:
+      enabled: true
+    env:
+      enabled: true
+    health:
+      enabled: true
+    features:
+      enabled: true
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    logfile:
+      enabled: true
