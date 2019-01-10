@@ -61,6 +61,8 @@ logging:
 
 app:
   security:
+    max-login-attempts: 25
+    login-attempts-reset-in-hours: 1
     jwt:
       url: /login
       header: Authorization

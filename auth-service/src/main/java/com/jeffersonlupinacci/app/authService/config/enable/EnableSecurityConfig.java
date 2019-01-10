@@ -27,10 +27,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class EnableSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
-  private AppUserDetailsService appUserDetailsService;
-
-  @Autowired
   JwtAuthenticationConfig config;
+  @Autowired
+  private AppUserDetailsService appUserDetailsService;
 
   /**
    * The Jwt Config Bean
