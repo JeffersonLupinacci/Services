@@ -1,6 +1,6 @@
 package com.jeffersonlupinacci.app.discoveryService;
 
-import com.jeffersonlupinacci.app.discoveryService.config.security.SSLStoreConfig;
+import com.jeffersonlupinacci.app.discoveryService.config.AppConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,7 +20,7 @@ public class DiscoveryServiceApplication {
   public static void main(String[] args) {
 
     try {
-      SSLStoreConfig.configure(args);
+      AppConfiguration.define(args);
     } catch (Exception e) {
       e.printStackTrace();
     }

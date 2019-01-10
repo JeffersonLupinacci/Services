@@ -1,4 +1,4 @@
-package com.jeffersonlupinacci.app.authService.config.security;
+package com.jeffersonlupinacci.app.proxyService.config.mapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * The KeyTool Security Parameter Configuration
+ * The Security Parameter
  *
  * @author jeffersonlupinacci
  */

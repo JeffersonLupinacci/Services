@@ -24,19 +24,6 @@ public class ApplicationServiceApplication {
 
     SpringApplication.run(ApplicationServiceApplication.class, args);
 
-    /*try {
-
-      SpringContext.getBean(MailService.class)
-          .sendMessage(MailComposition.builder()
-          .withSubject("aaaaa")
-              .withFrom("jeffersonlupinacci@gmail.com")
-          .withTo("jeffersonlupinacci@gmail.com")
-              .withHtmlTemplate("asdfasdfadsfadsf")
-          .build());
-    } catch (CommandExecuteException e) {
-      e.printStackTrace();
-    }*/
-
   }
 
 }

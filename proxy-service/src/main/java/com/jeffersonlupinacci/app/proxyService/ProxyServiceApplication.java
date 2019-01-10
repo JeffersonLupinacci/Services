@@ -1,6 +1,6 @@
 package com.jeffersonlupinacci.app.proxyService;
 
-import com.jeffersonlupinacci.app.proxyService.config.security.SSLStoreConfig;
+import com.jeffersonlupinacci.app.proxyService.config.AppConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -17,7 +17,7 @@ public class ProxyServiceApplication {
   public static void main(String[] args) {
 
     try {
-      SSLStoreConfig.configure(args);
+      AppConfiguration.define(args);
     } catch (Exception e) {
       e.printStackTrace();
     }

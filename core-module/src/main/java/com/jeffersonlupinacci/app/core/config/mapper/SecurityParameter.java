@@ -7,6 +7,11 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * The Security Parameter
+ *
+ * @author jeffersonlupinacci
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

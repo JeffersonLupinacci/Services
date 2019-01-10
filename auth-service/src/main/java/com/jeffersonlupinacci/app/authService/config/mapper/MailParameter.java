@@ -1,4 +1,4 @@
-package com.jeffersonlupinacci.app.core.config.mapper;
+package com.jeffersonlupinacci.app.authService.config.mapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
