@@ -1,50 +1,56 @@
 package com.jeffersonlupinacci.app.authService.domain;
 
+import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 /**
  * The User Entity
  *
  * @author jeffersonlupinacci
  */
-@Table(name = "users", schema = "security")
+@Table(name = "USERS", schema = "SECURITY")
 @Entity
 @Getter
+@Setter
 public class User {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "ID", nullable = false)
   private Long userId;
 
-  @Column(name = "name")
+  @Column(name = "NAME", nullable = false)
   private String username;
 
-  @Transient//@Column(name = "PASSWORD")
+  @Column(name = "PASSWORD", nullable = false)
   private String password;
 
-  @Transient//@Column(name = "ENABLED")
-  private boolean enabled;
+  @Column(name = "ENABLED", nullable = false)
+  private Boolean enabled;
 
-  @Transient//@Column(name = "ACCOUNT_NON_EXPIRED")
-  private boolean accountNonExpired;
+  @Column(name = "ACCOUNT_NON_EXPIRED")
+  private Boolean accountNonExpired;
 
-  @Transient//@Column(name = "CREDENTIALS_NON_EXPIRED")
-  private boolean credentialsNonExpired;
+  @Column(name = "CREDENTIALS_NON_EXPIRED")
+  private Boolean credentialsNonExpired;
 
-  @Transient//@Column(name = "ACCOUNT_NON_LOCKED")
-  private boolean accountNonLocked;
+  @Column(name = "ACCOUNT_NON_LOCKED")
+  private Boolean accountNonLocked;
 
-  /*@ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "users", joinColumns = @JoinColumn(name = "userId"),
-      inverseJoinColumns = @JoinColumn(name = "authId"))
-  Collection<? extends UserAuthority> authorities;*/
+  @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+  @JoinColumn(name = "USER_ID")
+  @Cascade({org.hibernate.annotations.CascadeType.ALL})
+  private Collection<UserAuthorization> authorities;
 
 }

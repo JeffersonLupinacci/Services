@@ -22,15 +22,18 @@ services:
     labels:
       name: postgres
 
-  adminer:
-    image: adminer
+  pgadmin:
+    image: dpage/pgadmin4
     restart: always
     ports:
-      - 8070:8080
+      - 8070:80
     networks:
       - app-network
+    environment:
+      PGADMIN_DEFAULT_EMAIL: jeffersonlupinacci@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: root
     labels:
-      name: adminer
+      name: pgadmin
       
 networks:
   app-network:

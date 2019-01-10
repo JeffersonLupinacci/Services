@@ -3,7 +3,6 @@ package com.jeffersonlupinacci.app.authService.repository;
 import com.jeffersonlupinacci.app.authService.domain.User;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 /**
  * The User Repository
@@ -13,12 +12,11 @@ import org.springframework.data.jpa.repository.Query;
 public interface UserRepository extends JpaRepository<User, Long> {
 
   /**
-   * Find a User by Name
+   * Find a User by Name - LAZY
    *
-   * @param username the User Name
+   * @param name the User Name
    * @return the Database User
    */
-  @Query("select u.id from security.users u where u.name = :username")
-  Optional<User> findOneByUsername(String username);
+  Optional<User> getOneByUsername(String name);
 
 }

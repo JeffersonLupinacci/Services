@@ -48,6 +48,7 @@ server:
 logging:
   level:
     ROOT: info
+    org.hibernate: warn
     org.springframework.cloud: off
     org.springframework.boot.actuate: off
     com.netflix.config: off
@@ -85,15 +86,14 @@ spring:
       write-date-timestamps-as-nanoseconds: false
 
   jpa:
+    hibernate.naming_strategy: org.hibernate.cfg.EJB3NamingStrategy
     properties:
       hibernate.jdbc.lob.non_contextual_creation: true
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
       hibernate.globally_quoted_identifiers: true
-      hibernate.naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-      hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/application
     username: root
     password: root
     hikari:

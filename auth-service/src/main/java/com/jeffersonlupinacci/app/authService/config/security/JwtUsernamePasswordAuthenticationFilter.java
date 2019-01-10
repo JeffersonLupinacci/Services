@@ -40,7 +40,7 @@ public class JwtUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
   @Override
   public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse rsp)
       throws AuthenticationException {
-    User u = this.translateUser(req);
+    TokenUser u = this.translateUser(req);
     Authentication auth = getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(
         u.getUsername(), u.getPassword(), Collections.emptyList()
     ));
@@ -54,7 +54,7 @@ public class JwtUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
    * @param request the Http Servlet Request
    * @return the Return
    */
-  private User translateUser(HttpServletRequest request) {
+  private TokenUser translateUser(HttpServletRequest request) {
     Enumeration<String> authHeader = request.getHeaders("Authorization");
     while (authHeader.hasMoreElements()) {
       String test = authHeader.nextElement();
@@ -62,7 +62,7 @@ public class JwtUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
         if (test.startsWith("Basic")) {
           byte[] byteArray = Base64.decodeBase64(test.replace("Basic", "").trim());
           String[] values = new String(byteArray).split(":");
-          return new User(values[0], values[1]);
+          return new TokenUser(values[0], values[1]);
         }
       }
     }
@@ -86,16 +86,16 @@ public class JwtUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
 
   @Getter
   @Setter
-  private static class User {
+  private static class TokenUser {
 
     private String username, password;
 
-    public User(String username, String password) {
+    public TokenUser(String username, String password) {
       this.username = username;
       this.password = password;
     }
 
-    public User() {
+    public TokenUser() {
     }
 
   }
