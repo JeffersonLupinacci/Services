@@ -31,7 +31,7 @@ import org.hibernate.annotations.Cascade;
  * @author jeffersonlupinacci
  */
 @Entity()
-@Table(name = "PERSON", schema = "MAIN")
+@Table(name = "PERSONS", schema = "MAIN")
 @Builder(toBuilder = true)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
@@ -45,7 +45,7 @@ public class Person extends AuditEntity {
   @JsonProperty("id")
   @ApiModelProperty(reference = "Id", hidden = true)
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "ID")
   private Long id;
 

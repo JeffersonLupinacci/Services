@@ -20,15 +20,15 @@ import lombok.Setter;
  * @author jeffersonlu
  */
 @Entity()
-@Table(name = "PERSON_EMAIL", schema = "MAIN")
+@Table(name = "PERSONS_EMAILS", schema = "MAIN")
 @Getter
 @Setter
 public class PersonEmail extends AuditEntity {
 
   @ApiModelProperty(reference = "Id", hidden = true)
   @Id
-  @Column(name = "EMAIL_ID")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "ID")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @ApiModelProperty(hidden = true)
@@ -40,7 +40,7 @@ public class PersonEmail extends AuditEntity {
   @Column(name = "PERSON_ID", insertable = false, updatable = false)
   private Long personId;
 
-  @Column(name = "EMAIL_ADDRESS")
+  @Column(name = "ADDRESS")
   private String address;
 
 }

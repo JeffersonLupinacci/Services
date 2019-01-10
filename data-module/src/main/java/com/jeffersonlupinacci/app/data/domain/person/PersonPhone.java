@@ -22,15 +22,15 @@ import lombok.Setter;
  * @author jeffersonlupinacci
  */
 @Entity
-@Table(name = "PERSON_PHONE", schema = "MAIN")
+@Table(name = "PERSONS_PHONES", schema = "MAIN")
 @Getter
 @Setter
 public class PersonPhone extends AuditEntity {
 
   @ApiModelProperty(reference = "Id", hidden = true)
   @Id
-  @Column(name = "PHONE_ID")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "ID")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long phoneId;
 
   @ApiModelProperty(hidden = true)
@@ -42,11 +42,11 @@ public class PersonPhone extends AuditEntity {
   @Column(name = "PERSON_ID", insertable = false, updatable = false)
   private Long personId;
 
-  @Column(name = "PHONE_TYPE", length = 12)
+  @Column(name = "TYPE", length = 12)
   @Enumerated(EnumType.STRING)
   private PhoneType numberType;
 
-  @Column(name = "PHONE_NUMBER", length = 30)
+  @Column(name = "NUMBER", length = 30)
   private String number;
 
 

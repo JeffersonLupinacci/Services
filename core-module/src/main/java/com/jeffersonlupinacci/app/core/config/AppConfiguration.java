@@ -9,6 +9,11 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import org.apache.commons.lang.ArrayUtils;
 
+/**
+ * The Core App Configuration
+ *
+ * @author jeffersonlupinacci
+ */
 public class AppConfiguration {
 
   public static SecurityParameter SSL_SECURITY;

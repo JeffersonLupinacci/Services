@@ -12,6 +12,6 @@ import org.springframework.core.annotation.Order;
 @Order(2)
 @EnableConfigServer
 @Configuration
-public class EnableCofigServerConfig {
+public class EnableConfigServerConfig {
 
 }

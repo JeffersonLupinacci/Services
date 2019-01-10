@@ -24,7 +24,7 @@ import lombok.Setter;
  * @author jeffersonlupinacci
  */
 @Entity()
-@Table(name = "PERSON_ADDRESS", schema = "MAIN")
+@Table(name = "PERSONS_ADDRESS", schema = "MAIN")
 @Builder(toBuilder = true)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
@@ -34,8 +34,8 @@ public class PersonAddress extends AuditEntity {
 
   @ApiModelProperty(reference = "Id", hidden = true)
   @Id
-  @Column(name = "ADDRESS_ID")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "ID")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @ApiModelProperty(hidden = true)
@@ -47,19 +47,19 @@ public class PersonAddress extends AuditEntity {
   @Column(name = "PERSON_ID", insertable = false, updatable = false)
   private Long personId;
 
-  @Column(name = "ADDRESS_STREET", length = 200, nullable = false)
+  @Column(name = "STREET", length = 200, nullable = false)
   private String street;
 
-  @Column(name = "ADDRESS_CITY", length = 60)
+  @Column(name = "CITY", length = 60)
   private String city;
 
-  @Column(name = "ADDRESS_STATE", length = 60)
+  @Column(name = "STATE", length = 60)
   private String state;
 
-  @Column(name = "ADDRESS_ZIP", length = 15)
+  @Column(name = "ZIP", length = 15)
   private String zip;
 
-  @Column(name = "ADDRESS_COUNTRY", length = 60)
+  @Column(name = "COUNTRY", length = 60)
   private String country;
 
 }

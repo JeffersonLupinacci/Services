@@ -82,14 +82,11 @@ spring:
 
   # JPA
   jpa:
-    hibernate:
-      show-sql: true
+    hibernate.naming_strategy: org.hibernate.cfg.EJB3NamingStrategy
     properties:
-      hibernate:
-        jdbc:
-          lob:
-            non_contextual_creation: true
-    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+      hibernate.jdbc.lob.non_contextual_creation: true
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate.globally_quoted_identifiers: true
 
 # Application Data Source
 app:
