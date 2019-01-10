@@ -21,7 +21,9 @@ data-module
 # Docker Compose
 Docker\Deploy-Elk.cmd - Elasticsearch, Logstash, Kibana (ELK) 
 
-Docker\Deploy-Postgres.cmd - Install Postgres Sql
+Docker\Deploy-Postgres.cmd - Install Postgres Sql and PgAdmin4
+* Postgres [db] - Username/Pass: root/root
+* PgAdmin 4 [pgadmin4] - Username/Pass: jeffersonlupinacci@gmail.com/root
 
 Docker\Deploy-RabbitMQ.cmd - Install RabbitMQ
 
