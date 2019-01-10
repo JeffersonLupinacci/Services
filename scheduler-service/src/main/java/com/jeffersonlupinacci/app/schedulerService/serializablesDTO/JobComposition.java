@@ -6,7 +6,6 @@ import com.jeffersonlupinacci.app.schedulerService.enumeration.JobType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Getter;

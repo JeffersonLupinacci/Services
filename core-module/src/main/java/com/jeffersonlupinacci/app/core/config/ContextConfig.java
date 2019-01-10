@@ -18,7 +18,8 @@ import org.springframework.core.annotation.Order;
 @ImportResource("spring/services.xml")
 @ComponentScan(basePackages = {
     "com.jeffersonlupinacci.app.core.facade",
-    "com.jeffersonlupinacci.app.core.exception"
+    "com.jeffersonlupinacci.app.core.exception",
+    "com.jeffersonlupinacci.app.core.api.communication"
 })
 public class ContextConfig {
 

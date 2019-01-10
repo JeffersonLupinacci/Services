@@ -15,6 +15,7 @@ public class RabbitMQListenerConfiguration {
   private final Integer concurrentConsumers;
   private final AcknowledgeMode acknowledgeMode;
   private final Boolean channelTransacted;
+  private final Class<? extends RabbitMQConsumer> consummer;
 
   private RabbitMQListenerConfiguration(RabbitMQListenerConfigurationBuilder builder) {
     this.queueName = builder.queueName;
@@ -23,6 +24,7 @@ public class RabbitMQListenerConfiguration {
     this.concurrentConsumers = builder.concurrentConsumers;
     this.acknowledgeMode = builder.acknowledgeMode;
     this.channelTransacted = builder.channelTransacted;
+    this.consummer = builder.consummer;
   }
 
   @SuppressWarnings("unused")
@@ -54,6 +56,10 @@ public class RabbitMQListenerConfiguration {
     return channelTransacted;
   }
 
+  public Class<? extends RabbitMQConsumer> getConsummer() {
+    return consummer;
+  }
+
   public static final class RabbitMQListenerConfigurationBuilder {
 
     private String queueName;
@@ -62,6 +68,7 @@ public class RabbitMQListenerConfiguration {
     private Integer concurrentConsumers;
     private AcknowledgeMode acknowledgeMode;
     private Boolean channelTransacted;
+    private Class<? extends RabbitMQConsumer> consummer;
 
     private RabbitMQListenerConfigurationBuilder() {
     }
@@ -104,6 +111,12 @@ public class RabbitMQListenerConfiguration {
     @SuppressWarnings("unused")
     public RabbitMQListenerConfigurationBuilder channelTransacted(Boolean channelTransacted) {
       this.channelTransacted = channelTransacted;
+      return this;
+    }
+
+    @SuppressWarnings("unused")
+    public RabbitMQListenerConfigurationBuilder consummer(Class<? extends RabbitMQConsumer> consummer) {
+      this.consummer = consummer;
       return this;
     }
   }

@@ -4,7 +4,6 @@ import static com.jeffersonlupinacci.app.core.config.AppConfiguration.MAIL;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Properties;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

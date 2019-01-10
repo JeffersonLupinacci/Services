@@ -1,8 +1,8 @@
 package com.jeffersonlupinacci.app.core.facade.interfaces.comunication;
 
 import com.jeffersonlupinacci.app.core.exception.CommandExecuteException;
-import com.jeffersonlupinacci.app.core.serializablesDTO.rabbitMQ.Queue;
 import com.jeffersonlupinacci.app.core.serializablesDTO.rabbitMQ.Binding;
+import com.jeffersonlupinacci.app.core.serializablesDTO.rabbitMQ.Queue;
 import com.jeffersonlupinacci.app.core.serializablesDTO.rabbitMQ.TopicExchange;
 import com.jeffersonlupinacci.app.core.serializablesDTO.rabbitMQ.User;
 import org.springframework.context.annotation.Profile;

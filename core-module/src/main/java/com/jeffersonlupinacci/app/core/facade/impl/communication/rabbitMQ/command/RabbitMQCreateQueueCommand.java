@@ -3,8 +3,6 @@ package com.jeffersonlupinacci.app.core.facade.impl.communication.rabbitMQ.comma
 import com.jeffersonlupinacci.app.core.SpringContext;
 import com.jeffersonlupinacci.app.core.facade.BaseCommand;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.springframework.amqp.core.AmqpAdmin;

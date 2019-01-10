@@ -1,0 +1,124 @@
+# Info configuration
+info:
+  app:
+    name: Nome
+    groupId: Grupo
+    artifactId: Artefato
+    description: Descricao
+    version: Versao
+
+# Spring
+spring:
+  # use composition
+  # DEFAULT
+  # swagger, eureka, activeMQ, rabbitMQ
+  profiles:
+    active: security, swagger, rabbitMQ
+  application:
+    name: notification
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+
+  # Spring cloud configuration
+  cloud:
+    config:
+      uri: https://localhost:8761/config
+      enabled: false
+
+  # Jackson
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS: true
+      write_dates_as_timestamps: false
+
+# Logging
+logging:
+    level:
+       com.jeffersonlupinacci.app.applicationService: warn
+       com.netflix.discovery: off
+    file: /opt/logs/application.log
+    pattern:
+        console: "%d %-5level %logger : %msg%n"
+        file: "%d %-5level [%thread] %logger : %msg%n"
+    register-shutdown-hook: true
+
+
+app:
+  mongoDB:
+    database-name: mongoDB
+  security:
+    jwt:
+      url: /login
+      header: Authorization
+      prefix: Bearer
+      expiration: 86400
+      secret: secret
+
+
+# Server Configuration
+server:
+  port: 9201
+  use-forward-headers: true
+  error:
+    whitelabel:
+      enabled: true
+  ssl:
+    enabled: true
+    client-auth: want
+    key-store: /opt/lib/target/Application.jks
+    key-store-password: 123456
+    key-alias: Application
+    trust-store: /opt/lib/target/Application.jks
+    trust-store-password: 123456
+
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: rabbitmq
+  password: rabbitmq
+  api: http://${rabbitmq.host}:15672/api
+  queueService: ${rabbitmq.api}/queues
+  userService: ${rabbitmq.api}/users
+  bindingService: ${rabbitmq.api}/bindings
+  exchangeService: ${rabbitmq.api}/exchanges
+
+mail:
+  server:
+    protocol: smtp
+    username: jeffersonlupinacci@gmail.com
+    password:
+  smtp:
+    host: smtp.gmail.com
+    port: 587
+    auth: true
+    starttls.enable: true
+    quitwait: false
+    ssl.trust: smtp.gmail.com
+
+# Management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics, health, env, info, features, beans, logfile, httptrace, threaddump
+  endpoint:
+    beans:
+      enabled: true
+    env:
+      enabled: true
+    health:
+      enabled: true
+    features:
+      enabled: true
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    logfile:
+      enabled: true
+    httptrace:
+      enabled: true
+    threaddump:
+      enabled: true

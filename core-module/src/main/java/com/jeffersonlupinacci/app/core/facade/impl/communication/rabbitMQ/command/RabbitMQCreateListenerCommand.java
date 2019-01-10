@@ -4,6 +4,7 @@ import com.jeffersonlupinacci.app.core.SpringContext;
 import com.jeffersonlupinacci.app.core.annotation.MessageFormatType;
 import com.jeffersonlupinacci.app.core.exception.CommandExecuteException;
 import com.jeffersonlupinacci.app.core.facade.BaseCommand;
+import com.jeffersonlupinacci.app.core.facade.impl.communication.rabbitMQ.RabbitMQConsumer;
 import com.jeffersonlupinacci.app.core.facade.impl.communication.rabbitMQ.RabbitMQListenerConfiguration;
 import com.jeffersonlupinacci.app.core.facade.impl.communication.rabbitMQ.RabbitMQListenerContainerGroup;
 import com.jeffersonlupinacci.app.core.facade.impl.communication.rabbitMQ.command.exception.ConditionalRejectingListenerExceptionHandler;
@@ -22,6 +23,7 @@ import org.springframework.amqp.support.converter.MessageConverter;
 public class RabbitMQCreateListenerCommand extends BaseCommand<Boolean> {
 
   private final RabbitMQListenerConfiguration config;
+  private RabbitMQConsumer consumer;
 
   /**
    * Default Constructor
@@ -46,10 +48,9 @@ public class RabbitMQCreateListenerCommand extends BaseCommand<Boolean> {
 
     // Already exists?
     if (null != listenerGroup.getListener(this.config.getQueueName())) {
-      if (listenerGroup.getListener(this.config.getQueueName()).isActive()){
+      if (listenerGroup.getListener(this.config.getQueueName()).isActive()) {
         throw new CommandExecuteException("Listener Already exist");
-      }
-      else{
+      } else {
         listenerGroup.removeListener(this.config.getQueueName());
       }
     }
@@ -66,6 +67,14 @@ public class RabbitMQCreateListenerCommand extends BaseCommand<Boolean> {
     container.setChannelTransacted(this.config.getChannelTransacted());
     container.setErrorHandler(new ConditionalRejectingErrorHandler(new ConditionalRejectingListenerExceptionHandler()));
 
+    try {
+      consumer = this.config.getConsummer().newInstance();
+    } catch (InstantiationException e) {
+      throw new CommandExecuteException(e);
+    } catch (IllegalAccessException e) {
+      throw new CommandExecuteException(e);
+    }
+
     /* The Message Listener Entry Point */
     container.setMessageListener((Message message) -> {
 
@@ -74,7 +83,11 @@ public class RabbitMQCreateListenerCommand extends BaseCommand<Boolean> {
       if (null != formatType) {
         @SuppressWarnings("unchecked")
         MessageConverter converter = formatType.getConverter();
-        System.out.println(converter.fromMessage(message));
+        try {
+          this.consumer.setMessage(converter.fromMessage(message)).execute();
+        } catch (CommandExecuteException e) {
+          log.warn("Consumer Error", e);
+        }
       }
 
     });

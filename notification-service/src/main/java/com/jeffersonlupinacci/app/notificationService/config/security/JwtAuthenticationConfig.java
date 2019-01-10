@@ -1,4 +1,4 @@
-package com.jeffersonlupinacci.app.proxyService.config.security;
+package com.jeffersonlupinacci.app.notificationService.config.security;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

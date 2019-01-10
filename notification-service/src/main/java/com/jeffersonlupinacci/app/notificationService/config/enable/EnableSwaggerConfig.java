@@ -1,4 +1,4 @@
-package com.jeffersonlupinacci.app.applicationService.config.enable;
+package com.jeffersonlupinacci.app.notificationService.config.enable;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -30,24 +30,6 @@ public class EnableSwaggerConfig {
 
   @Value("${info.app.description}")
   private String description;
-
-  /**
-   * The Person API
-   */
-  @Bean
-  public Docket personDocket() {
-    return new Docket(DocumentationType.SWAGGER_2)
-        .groupName("person")
-        .select()
-        .apis(RequestHandlerSelectors.basePackage("com.jeffersonlupinacci.app.applicationService.api.person"))
-        .build()
-        .apiInfo(new ApiInfoBuilder()
-            .title(name)
-            .description(description)
-            .version(version)
-            .build());
-
-  }
 
   /**
    * The Communication API

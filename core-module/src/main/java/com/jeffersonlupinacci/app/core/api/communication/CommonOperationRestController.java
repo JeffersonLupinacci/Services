@@ -1,4 +1,4 @@
-package com.jeffersonlupinacci.app.applicationService.api.communication;
+package com.jeffersonlupinacci.app.core.api.communication;
 
 import com.jeffersonlupinacci.app.core.exception.CommandExecuteException;
 import com.jeffersonlupinacci.app.core.facade.interfaces.comunication.RabbitMQManagementService;
@@ -38,8 +38,8 @@ public class CommonOperationRestController {
   @ApiOperation(value = "Simple Text Message", response = Boolean.class,
       produces = "application/json", notes = "Send a Simple Text Message", nickname = "sendTextMessage")
   @PostMapping(value = "/sendmessage", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Object> sendMessage(String textMessage, String topicExchange, String routingKey) throws CommandExecuteException {
-    return ResponseEntity.status(HttpStatus.OK).body(messageService.sendMessage(new SimpleTextMessage(textMessage), topicExchange, routingKey));
+  public ResponseEntity<Object> sendMessage(String message, String destination, String topicExchange, String routingKey) throws CommandExecuteException {
+    return ResponseEntity.status(HttpStatus.OK).body(messageService.sendMessage(new SimpleTextMessage(message, destination), topicExchange, routingKey));
   }
 
   @ApiOperation(value = "Get Users", response = User[].class,

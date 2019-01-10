@@ -1,4 +1,4 @@
-package com.jeffersonlupinacci.app.applicationService.api.communication;
+package com.jeffersonlupinacci.app.core.api.communication;
 
 import com.jeffersonlupinacci.app.core.exception.CommandExecuteException;
 import com.jeffersonlupinacci.app.core.facade.interfaces.comunication.RabbitMQManagementService;

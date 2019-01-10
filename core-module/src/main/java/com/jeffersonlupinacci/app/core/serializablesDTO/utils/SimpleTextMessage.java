@@ -21,4 +21,8 @@ public class SimpleTextMessage extends BaseMessage {
   @Setter
   String message;
 
+  @JsonProperty("destination")
+  @Getter
+  @Setter
+  String destination;
 }
