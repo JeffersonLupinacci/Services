@@ -17,10 +17,10 @@ import org.springframework.stereotype.Service;
 public class LoginService {
 
   @Value("${app.security.max-login-attempts:10}")
-  private Integer maxloginAttempts;
+  private Integer maxloginAttempts = 10;
 
   @Value("${app.security.login-attempts-reset-in-hours:1}")
-  private Integer loginAttemptReset;
+  private Integer loginAttemptReset = 1;
 
   private LoadingCache<String, Integer> failureCache;
 
