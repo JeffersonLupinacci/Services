@@ -5,4 +5,4 @@ cls
 @echo Build Steps
 @echo.
 
-call Commands\Elk.cmd
+call Commands\Graylog.cmd

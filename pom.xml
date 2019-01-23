@@ -55,7 +55,7 @@
     <postgresql.version>42.2.5</postgresql.version>
     <logstash.logback.encoder.version>5.2</logstash.logback.encoder.version>
     <ch.qos.logback.version>1.2.3</ch.qos.logback.version>
-
+    <logstash-gelf.version>1.12.1</logstash-gelf.version>
   </properties>
 
   <dependencyManagement>
@@ -217,28 +217,12 @@
         <version>${postgresql.version}</version>
       </dependency>
 
-      <dependency>
-        <groupId>net.logstash.logback</groupId>
-        <artifactId>logstash-logback-encoder</artifactId>
-        <version>${logstash.logback.encoder.version}</version>
+      <!-- Graylog Appender -->
+       <dependency>
+        <groupId>biz.paluch.logging</groupId>
+        <artifactId>logstash-gelf</artifactId>
+        <version>${logstash-gelf.version}</version>
       </dependency>
-
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-core</artifactId>
-        <version>${ch.qos.logback.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-classic</artifactId>
-        <version>${ch.qos.logback.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-access</artifactId>
-        <version>${ch.qos.logback.version}</version>
-      </dependency>
-
 
     </dependencies>
   </dependencyManagement>

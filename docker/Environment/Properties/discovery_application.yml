@@ -117,3 +117,8 @@ management:
       enabled: true
     logfile:
       enabled: true
+
+app:
+  graylog:
+    host: graylog
+    port: 12201

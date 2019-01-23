@@ -106,6 +106,12 @@
       <artifactId>guava</artifactId>
     </dependency>
 
+    <!-- Graylog Appender -->
+    <dependency>
+      <groupId>biz.paluch.logging</groupId>
+      <artifactId>logstash-gelf</artifactId>
+    </dependency>
+
   </dependencies>
 
   <build>

@@ -11,7 +11,7 @@ info:
 eureka:
 
   instance:
-    hostname: discoveryservice
+    hostname: localhost
     appname: Discovery
     home-page-url: https://${eureka.instance.hostname}:${server.port}/
     home-page-url-path: https://${eureka.instance.hostname}:${server.port}/
@@ -53,16 +53,16 @@ server:
 
 # Logging
 logging:
-    level:
-       ROOT: info
-       com.netflix: off
-       org.springframework.cloud: off
-       org.springframework.boot.actuate: off
-    file: /opt/logs/discovery.log
-    pattern:
-        console: "%d %-5level %logger : %msg%n"
-        file: "%d %-5level [%thread] %logger : %msg%n"
-    register-shutdown-hook: true
+  level:
+     ROOT: INFO
+     com.netflix: WARN
+     org.springframework.cloud: WARN
+     org.springframework.boot.actuate: WARN
+  file: /opt/logs/discovery.log
+  pattern:
+      console: "%d %-5level %logger : %msg%n"
+      file: "%d %-5level [%thread] %logger : %msg%n"
+  register-shutdown-hook: true
 
 spring:
   freemarker:
@@ -117,3 +117,8 @@ management:
       enabled: true
     logfile:
       enabled: true
+
+app:
+  graylog:
+    host: localhost
+    port: 12201

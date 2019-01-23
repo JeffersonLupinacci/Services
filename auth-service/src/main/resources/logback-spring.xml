@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+  <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+  <springProperty scope="context" name="projectName" source="spring.application.name" defaultValue="auth"/>
+  <springProperty scope="context" name="graylogServer" source="app.graylog.host" defaultValue="localhost"/>
+  <springProperty scope="context" name="graylogPort" source="app.graylog.port" defaultValue="12201"/>
+
+  <property name="log.pattern" value="%date [%thread] %-5level %logger:%L - %message%n"/>
+
+  <appender name="GRAYLOG" class="biz.paluch.logging.gelf.logback.GelfLogbackAppender">
+    <host>udp:${graylogServer}</host>
+    <port>${graylogPort}</port>
+    <version>1.1</version>
+    <facility>GELF</facility>
+    <extractStackTrace>true</extractStackTrace>
+    <includeLocation>true</includeLocation>
+    <timestampPattern>yyyy-MM-dd HH:mm:ss,SSS</timestampPattern>
+    <additionalFields>project_name=${projectName}</additionalFields>
+    <additionalFieldTypes>project_name=String</additionalFieldTypes>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>INFO</level>
+    </filter>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="GRAYLOG" />
+  </root>
+
+</configuration>

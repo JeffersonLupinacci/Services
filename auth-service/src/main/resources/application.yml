@@ -16,7 +16,7 @@ eureka:
         enabled: true
 
     serviceUrl:
-      defaultZone: https://discoveryservice:8761/eureka/
+      defaultZone: https://localhost:8761/eureka/
 
   instance:
     hostname: authservice
@@ -49,10 +49,8 @@ logging:
   level:
     ROOT: info
     org.hibernate: warn
-    org.springframework.cloud: off
-    org.springframework.boot.actuate: off
-    com.netflix.config: off
-    com.netflix.discovery: off
+    org.springframework: warn
+    com.netflix: warn
   file: /opt/logs/auth.log
   pattern:
     console: "%d %-5level %logger : %msg%n"
@@ -60,6 +58,9 @@ logging:
   register-shutdown-hook: true
 
 app:
+  graylog:
+    host: localhost
+    port: 12201
   security:
     max-login-attempts: 25
     login-attempts-reset-in-hours: 1
@@ -79,7 +80,7 @@ spring:
   cloud:
     config:
       enabled: false
-      uri: https://discoveryservice:8761/config/
+      uri: https://localhost:8761/config/
   freemarker:
     template-loader-path: classpath:/templates/
     prefer-file-system-access: false

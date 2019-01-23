@@ -47,11 +47,11 @@ server:
 # Logging
 logging:
   level:
-    ROOT: info
-    com.netflix.discovery: off
-    org.springframework.cloud: off
-    springfox.documentation: off
-    org.springframework.cloud.netflix: off
+    ROOT: INFO
+    com.netflix.discovery: WARN
+    org.springframework: INFO
+    springfox.documentation: WARN
+    org.springframework.cloud.netflix: WARN
   file: /opt/logs/proxy.log
   pattern:
     console: "%d %-5level %logger : %msg%n"
@@ -98,6 +98,9 @@ api:
         ROLE_ADMIN
 
 app:  
+  graylog:
+    host: localhost
+    port: 12201
   security:
     login-url: https://authservice:8081/auth/login
     jwt:
