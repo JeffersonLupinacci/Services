@@ -37,37 +37,37 @@ public class LoginService {
   /**
    * Invalidate a Failed Attempt
    *
-   * @param ip the Ip
+   * @param user the user
    */
-  public void loginSucceeded(String ip) {
-    failureCache.invalidate(ip);
+  public void loginSucceeded(String user) {
+    failureCache.invalidate(user);
   }
 
   /**
    * Log a Failed Attempt
    *
-   * @param ip the ip
+   * @param user the user
    */
-  public void loginFailed(String ip) {
+  public void loginFailed(String user) {
     int attempts;
     try {
-      attempts = failureCache.get(ip);
+      attempts = failureCache.get(user);
     } catch (ExecutionException e) {
       attempts = 0;
     }
     attempts++;
-    failureCache.put(ip, attempts);
+    failureCache.put(user, attempts);
   }
 
   /**
    * Check if this attempt stay blocked
    *
-   * @param ip the ip
+   * @param user the user
    * @return the boolean check
    */
-  public boolean isIpBlocked(String ip) {
+  public boolean isUserBlocked(String user) {
     try {
-      return failureCache.get(ip) >= maxloginAttempts;
+      return failureCache.get(user) >= maxloginAttempts;
     } catch (ExecutionException e) {
       return false;
     }

@@ -12,11 +12,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UserRepository extends JpaRepository<User, Long> {
 
   /**
-   * Find a User by Name - LAZY
+   * Find a User by Name - EAGER
    *
    * @param name the User Name
    * @return the Database User
    */
-  Optional<User> getOneByUsername(String name);
+  Optional<User> getFirst1ByUsername(String name);
 
 }

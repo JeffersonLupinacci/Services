@@ -16,7 +16,7 @@ eureka:
         enabled: true
 
     serviceUrl:
-      defaultZone: https://discoveryservice:8761/eureka/
+      defaultZone: https://localhost:8761/eureka/
 
   instance:
     hostname: proxyservice
@@ -64,7 +64,7 @@ zuul:
     discovery:
       path: /mgmt/**
       sericeId: DISCOVERY
-      url: https://discoveryservice:8761/
+      url: https://localhost:8761/
       sensitiveHeaders:
     auth:
       path: /auth/**
@@ -119,13 +119,24 @@ spring:
   cloud:
     config:
       enabled: false
-      uri: https://discoveryservice:8761/config/
+      uri: https://localhost:8761/config/
   freemarker:
     template-loader-path: classpath:/templates/
     prefer-file-system-access: false
   jackson:
     serialization:
       write-date-timestamps-as-nanoseconds: false
+
+  zipkin:
+    service:
+      name: ${spring.application.name}
+    sender:
+      type: web
+    baseUrl: http://localhost:9411
+
+  sleuth:
+    sampler:
+      percentage: 1.0
 
 # Ribbon
 ribbon:

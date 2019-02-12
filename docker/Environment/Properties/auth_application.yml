@@ -47,12 +47,12 @@ server:
 # Logging
 logging:
   level:
-    ROOT: info
-    org.hibernate: warn
-    org.springframework.cloud: off
-    org.springframework.boot.actuate: off
-    com.netflix.config: off
-    com.netflix.discovery: off
+    ROOT: INFO
+    org.hibernate: WARN
+    org.springframework.cloud: WARN
+    org.springframework.boot.actuate: WARN
+    com.netflix.config: WARN
+    com.netflix.discovery: WARN
   file: /opt/logs/auth.log
   pattern:
     console: "%d %-5level %logger : %msg%n"
@@ -60,6 +60,9 @@ logging:
   register-shutdown-hook: true
 
 app:
+  graylog:
+    host: graylog
+    port: 12201
   security:
     max-login-attempts: 10
     login-attempts-reset-in-hours: 1
@@ -105,6 +108,17 @@ spring:
       minimumIdle: 2
       maximumPoolSize: 8
       poolName: authPool
+
+  zipkin:
+    service:
+      name: ${spring.application.name}
+    sender:
+      type: web
+    baseUrl: http://zipkin:9411
+
+  sleuth:
+    sampler:
+      percentage: 1.0
 
 # Ribbon
 ribbon:

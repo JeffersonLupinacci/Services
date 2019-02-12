@@ -4,6 +4,8 @@ services:
   mongo:
     image: mongo:3
     mem_limit: 128m
+    networks:
+      - app-network
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.6.10
@@ -18,6 +20,8 @@ services:
         soft: -1
         hard: -1
     mem_limit: 1g
+    networks:
+      - app-network
 
   graylog:
     image: graylog/graylog:2.5.1
@@ -36,3 +40,20 @@ services:
     ports:
       - 9000:9000
       - 12201:12201/udp
+    networks:
+      - app-network
+
+  zipkin:
+    image: openzipkin/zipkin
+    restart: always
+    hostname: zipkin
+    ports:
+      - 9411:9411
+    networks:
+      - app-network
+    labels:
+      name: zipkin
+
+networks:
+  app-network:
+    external: true

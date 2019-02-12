@@ -28,7 +28,3 @@ services:
 networks:
   app-network:
     external: true
-
-volumes:
-  config-repo:
-    external: true

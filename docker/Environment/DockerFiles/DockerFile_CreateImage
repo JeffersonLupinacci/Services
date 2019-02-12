@@ -13,13 +13,6 @@ RUN apk add openjdk8
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 
 # ================
-# Configure Elk
-# ================
-COPY Scripts/filebeat-6.5.1-amd64.deb /tmp/filebeat-6.5.1-amd64.deb
-COPY Scripts/filebeat.yml /etc/filebeat/filebeat.yml
-RUN dpkg -i /tmp/filebeat-6.5.1-amd64.deb
-
-# ================
 # Service Folder
 # ================
 RUN mkdir -p /opt/lib/target && mkdir -p /opt/logs/ 

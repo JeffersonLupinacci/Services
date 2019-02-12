@@ -114,6 +114,12 @@
       <version>${jackson.version}</version>
     </dependency>
 
+    <!-- Zipkin Tracing -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-zipkin</artifactId>
+    </dependency>
+
   </dependencies>
 
 </project>

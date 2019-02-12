@@ -48,7 +48,7 @@ public class User {
   @Column(name = "ACCOUNT_NON_LOCKED")
   private Boolean accountNonLocked;
 
-  @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+  @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
   @JoinColumn(name = "USER_ID")
   @Cascade({org.hibernate.annotations.CascadeType.ALL})
   private Collection<UserAuthorization> authorities;

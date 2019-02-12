@@ -1,7 +1,7 @@
 @echo Step [2/7] Compiling with Maven
 
 cd..
-call mvn clean install -DskipTest=true -q
+call mvn clean install -DskipTests=true -q
 
 @echo Step [3/7] Copying Deployment Packages
 @echo ======================================================

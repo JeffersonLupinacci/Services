@@ -111,7 +111,7 @@ public class SpringMailConfig {
     final StringTemplateResolver templateResolver = new StringTemplateResolver();
     templateResolver.setOrder(Integer.valueOf(3));
     templateResolver.setTemplateMode("HTML");
-    templateResolver.setTemplateMode("TXT");
+    templateResolver.setTemplateMode("TEXT");
     templateResolver.setCacheable(false);
     return templateResolver;
   }

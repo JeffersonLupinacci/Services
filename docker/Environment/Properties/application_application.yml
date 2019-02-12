@@ -47,7 +47,7 @@ server:
 # Logging
 logging:
     level:
-       ROOT: warn
+       ROOT: INFO
     file: /opt/logs/application.log
     pattern:
         console: "%d %-5level %logger : %msg%n"
@@ -88,8 +88,22 @@ spring:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
       hibernate.globally_quoted_identifiers: true
 
+  zipkin:
+    service:
+      name: ${spring.application.name}
+    sender:
+      type: web
+    baseUrl: http://zipkin:9411
+
+  sleuth:
+    sampler:
+      percentage: 1.0
+
 # Application Data Source
 app:
+  graylog:
+    host: graylog
+    port: 12201
   datasource:
     driver-class-name: org.postgresql.Driver
     jdbc-url: jdbc:postgresql://db:5432/application
@@ -107,6 +121,30 @@ app:
 ribbon:
   eureka:
     enabled: true
+
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: rabbitmq
+  password: rabbitmq
+  api: http://${rabbitmq.host}:15672/api
+  queueService: ${rabbitmq.api}/queues
+  userService: ${rabbitmq.api}/users
+  bindingService: ${rabbitmq.api}/bindings
+  exchangeService: ${rabbitmq.api}/exchanges
+
+mail:
+  server:
+    protocol: smtp
+    username: jeffersonlupinacci@gmail.com
+    password:
+  smtp:
+    host: smtp.gmail.com
+    port: 587
+    auth: true
+    starttls.enable: true
+    quitwait: false
+    ssl.trust: smtp.gmail.com
 
 # Management
 management:

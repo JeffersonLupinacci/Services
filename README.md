@@ -19,7 +19,7 @@ core-module
 data-module
 
 # Docker Compose
-Docker\Deploy-Elk.cmd - Elasticsearch, Logstash, Kibana (ELK) 
+Docker\Deploy-Logging.cmd - MongoDB, ElasticSearch, Graylog, Zipkins 
 
 Docker\Deploy-Postgres.cmd - Install Postgres Sql and PgAdmin4
 * Postgres [db] - Username/Pass: root/root

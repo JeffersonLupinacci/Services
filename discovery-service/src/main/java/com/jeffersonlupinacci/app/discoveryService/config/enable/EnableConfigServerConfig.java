@@ -1,6 +1,5 @@
 package com.jeffersonlupinacci.app.discoveryService.config.enable;
 
-import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 
@@ -10,7 +9,7 @@ import org.springframework.core.annotation.Order;
  * @author jeffersonlupinacci
  */
 @Order(2)
-@EnableConfigServer
+// @EnableConfigServer
 @Configuration
 public class EnableConfigServerConfig {
 

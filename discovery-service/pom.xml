@@ -29,10 +29,16 @@
       <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
     </dependency>
 
-    <!-- Config Server -->
+    <!-- Config Server
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-config-server</artifactId>
+    </dependency>-->
+
+    <!-- Zipkin Tracing -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-zipkin</artifactId>
     </dependency>
 
     <!-- Spring Boot Admin -->

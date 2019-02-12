@@ -96,6 +96,17 @@ spring:
       name: admin
       password: admin-password
 
+  zipkin:
+    service:
+      name: ${spring.application.name}
+    sender:
+      type: web
+    baseUrl: http://localhost:9411
+
+  sleuth:
+    sampler:
+      percentage: 1.0
+
 # Management
 management:
   endpoints:

@@ -16,14 +16,14 @@ services:
             - 8761
         networks:
             - app-network
-        volumes:
-            - type: bind
-              source: /c/opt/logs
-              target: /opt/logs
-        volumes:
-            - type: bind
-              source: /c/opt/settings
-              target: /opt/settings
+        #volumes:
+        #    - type: bind
+        #      source: /c/opt/logs
+        #      target: /opt/logs
+        #volumes:
+        #    - type: bind
+        #      source: /c/opt/settings
+        #      target: /opt/settings
 
     # ===============================
     # Authorization Service
@@ -40,14 +40,14 @@ services:
             - 8081
         networks:
             - app-network
-        volumes:
-            - type: bind
-              source: /c/opt/logs
-              target: /opt/logs
-        volumes:
-            - type: bind
-              source: /c/opt/settings
-              target: /opt/settings
+        #volumes:
+        #    - type: bind
+        #      source: /c/opt/logs
+        #      target: /opt/logs
+        #volumes:
+        #    - type: bind
+        #      source: /c/opt/settings
+        #      target: /opt/settings
         links:
             - discoveryservice:discoveryservice
         depends_on:
@@ -74,10 +74,10 @@ services:
             - discoveryservice:discoveryservice
         depends_on:
             - discoveryservice
-        volumes:
-            - type: bind
-              source: /c/opt/logs
-              target: /opt/logs
+        #volumes:
+        #    - type: bind
+        #      source: /c/opt/logs
+        #      target: /opt/logs
 
     # ===============================
     # Application Service
@@ -102,15 +102,15 @@ services:
         depends_on:
             - discoveryservice
             - proxyservice
-        volumes:
-            - type: bind
-              source: /c/opt/logs
-              target: /opt/logs
+        #volumes:
+        #    - type: bind
+        #      source: /c/opt/logs
+        #      target: /opt/logs
 
 networks:
   app-network:
     external: true
 
-volumes:
-    config-repo:
-        external: true
+#volumes:
+#    config-repo:
+#        external: true

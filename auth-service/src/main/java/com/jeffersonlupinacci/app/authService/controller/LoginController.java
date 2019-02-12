@@ -1,6 +1,7 @@
 package com.jeffersonlupinacci.app.authService.controller;
 
 import com.jeffersonlupinacci.app.authService.config.security.JwtAuthenticationConfig;
+import com.jeffersonlupinacci.app.authService.service.LoginService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.time.Instant;
@@ -32,15 +33,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
   @Autowired
+  private LoginService loginService;
+
+  @Autowired
   @Qualifier("jwtAuthenticationConfig")
   JwtAuthenticationConfig config;
+
   @Autowired
   private AuthenticationManager authenticationManager;
 
   /**
    * Controller URL
    */
-  @RequestMapping("/auth/login")
+  @RequestMapping("/login")
   @GetMapping
   public String login() {
     return "login";
@@ -54,13 +59,19 @@ public class LoginController {
    * @param password the Password
    * @return the Authorization
    */
-  @PostMapping(name = "/auth/check")
+  @PostMapping(name = "/check")
   public ResponseEntity<String> check(HttpServletResponse response, String username, String password) {
+
+    if (loginService.isUserBlocked(username)) {
+      throw new RuntimeException(String.format("[%s] blocked", username));
+    }
 
     Authentication auth = this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
         username, password, Collections.emptyList()));
 
     if (auth.isAuthenticated()) {
+
+      loginService.loginSucceeded(username);
 
       Instant now = Instant.now();
       String bearer = Jwts.builder()
@@ -80,6 +91,8 @@ public class LoginController {
       return ResponseEntity.status(HttpStatus.OK).body("200");
     }
 
+    loginService.loginFailed(username);
+
     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("401");
 
   }
@@ -87,7 +100,7 @@ public class LoginController {
   /**
    * Controller URL
    */
-  @RequestMapping("/auth/logout")
+  @RequestMapping("/logout")
   @GetMapping
   public String logout(HttpServletResponse response) {
     response.addCookie(new Cookie("Bearer", null));

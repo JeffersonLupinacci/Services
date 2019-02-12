@@ -54,10 +54,10 @@ server:
 # Logging
 logging:
     level:
-       ROOT: info
-       com.netflix: off
-       org.springframework.cloud: off
-       org.springframework.boot.actuate: off
+       ROOT: INFO
+       com.netflix: WARN
+       org.springframework.cloud: WARN
+       org.springframework.boot.actuate: WARN
     file: /opt/logs/discovery.log
     pattern:
         console: "%d %-5level %logger : %msg%n"
@@ -72,14 +72,14 @@ spring:
     name: discovery
   profiles:
     active: native
-  cloud:
-    config:
-      server:
-        native:
-          searchLocations: /opt/settings/
-        prefix: /config
-      discovery:
-        enabled: true
+  #cloud:
+  #  config:
+  #    server:
+  #      native:
+  #        searchLocations: /opt/settings/
+  #      prefix: /config
+  #    discovery:
+  #      enabled: true
 
   boot:
     admin:
@@ -95,6 +95,17 @@ spring:
     user:
       name: admin
       password: admin-password
+
+  zipkin:
+    service:
+      name: ${spring.application.name}
+    sender:
+      type: web
+    baseUrl: http://zipkin:9411
+
+  sleuth:
+    sampler:
+      percentage: 1.0
 
 # Management
 management:

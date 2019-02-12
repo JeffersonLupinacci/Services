@@ -14,6 +14,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
 /**
  * The User Details Service
@@ -29,17 +32,14 @@ public class AppUserDetailsService implements UserDetailsService {
   @Autowired
   private UserRepository userRepository;
 
-  @Autowired
-  private HttpServletRequest request;
-
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-    if (loginService.isIpBlocked(getClientIP())) {
-      throw new RuntimeException("Ip Address Blocked");
+    if (loginService.isUserBlocked(username)) {
+      throw new RuntimeException(String.format("[%s] blocked", username));
     }
 
-    Optional<User> userOptional = userRepository.getOneByUsername(username.toLowerCase());
-    User user = userOptional.orElseThrow(() -> new UsernameNotFoundException("Invalid User"));
+    Optional<User> userOptional = userRepository.getFirst1ByUsername(username.toLowerCase());
+    User user = userOptional.orElseThrow(() -> new UsernameNotFoundException(String.format("[%s] invalid user", username)));
     return new org.springframework.security.core.userdetails.User(username, user.getPassword(), getGrants(user));
   }
 
@@ -50,11 +50,5 @@ public class AppUserDetailsService implements UserDetailsService {
     return authorities;
   }
 
-  private String getClientIP() {
-    String xfHeader = request.getHeader("X-Forwarded-For");
-    if (xfHeader == null) {
-      return request.getRemoteAddr();
-    }
-    return xfHeader.split(",")[0];
-  }
+
 }

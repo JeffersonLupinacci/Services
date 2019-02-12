@@ -5,4 +5,4 @@ cls
 @echo Build Steps
 @echo.
 
-call Commands\Graylog.cmd
+call Commands\Logging.cmd

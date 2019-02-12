@@ -28,6 +28,7 @@ public class EnableSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   JwtAuthenticationConfig config;
+
   @Autowired
   private AppUserDetailsService appUserDetailsService;
 
@@ -87,10 +88,11 @@ public class EnableSecurityConfig extends WebSecurityConfigurerAdapter {
             UsernamePasswordAuthenticationFilter.class)
         .authorizeRequests()
 
-        .antMatchers("/auth/login").permitAll()
-        .antMatchers("/auth/check").permitAll()
-        .antMatchers("/auth/logout").permitAll()
+        .antMatchers("/login").permitAll()
+        .antMatchers("/check").permitAll()
+        .antMatchers("/logout").permitAll()
         .antMatchers("/actuator/**").permitAll()
+
         .anyRequest().authenticated();
   }
 

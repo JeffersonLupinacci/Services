@@ -11,6 +11,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -32,7 +33,7 @@ public class JwtUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
   private final JwtAuthenticationConfig config;
 
   public JwtUsernamePasswordAuthenticationFilter(JwtAuthenticationConfig config, AuthenticationManager authManager) {
-    super(new AntPathRequestMatcher("/auth/login", "POST"));
+    super(new AntPathRequestMatcher("/login", "POST"));
     setAuthenticationManager(authManager);
     this.config = config;
   }
@@ -86,6 +87,7 @@ public class JwtUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
 
   @Getter
   @Setter
+  @NoArgsConstructor
   private static class TokenUser {
 
     private String username, password;
@@ -93,9 +95,6 @@ public class JwtUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
     public TokenUser(String username, String password) {
       this.username = username;
       this.password = password;
-    }
-
-    public TokenUser() {
     }
 
   }

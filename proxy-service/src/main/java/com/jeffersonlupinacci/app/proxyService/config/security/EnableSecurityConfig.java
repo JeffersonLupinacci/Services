@@ -57,6 +57,7 @@ public class EnableSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Auth Service
         .antMatchers("/auth/login**").permitAll()
+        .antMatchers("/auth/api-login**").permitAll()
 
         // Auth Service Actuator - Only Admin
         .antMatchers("/auth/actuator**").hasRole("ADMIN")
